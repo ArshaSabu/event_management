@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('https://images.unsplash.com/photo-1606248897732-2b61e77a83a0') no-repeat center center/cover;
+  height: 100vh;
+  color: white;
+}
+body {
+  margin: 0;
+  background: #716c6c; /* or add a hero background */
+  font-family: 'Poppins', sans-serif;
+}
+
+

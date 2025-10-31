@@ -1,15 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import "./index.css";
 
-function App() {
-
+export default function App() {
   return (
     <>
-      <h1>WELCOME</h1>
+      <Header />
+      <main style={{ paddingTop: "100px", minHeight: "70vh" }}>
+        <h2 style={{ textAlign: "center", marginTop: 60 }}>
+          Page body / hero area
+        </h2>
+      </main>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+
+
+
+
+

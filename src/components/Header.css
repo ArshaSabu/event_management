@@ -1,0 +1,166 @@
+/* Font family */
+.navbar, .nav-links a, .logo {
+  font-family: "Poiret One", sans-serif;
+}
+
+/* Navbar Base */
+.navbar {
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 1px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background 0.5s ease, box-shadow 0.4s ease, color 0.4s ease;
+}
+
+/* Navbar when scrolled */
+.navbar.scrolled {
+  background: rgba(251, 248, 248, 0.95);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo section */
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #a28834;
+  letter-spacing: 1px;
+  transition: color 0.4s ease;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  object-fit: contain;
+}
+
+.logo span {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.4s ease;
+}
+
+/* Scrolled logo color */
+.navbar.scrolled .logo span {
+  color: #000;
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 45px;
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Hover underline effect */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #a28834;
+  transition: all 0.4s ease;
+}
+
+.nav-links a:hover {
+  color: #a28834;
+  text-shadow: 0 0 10px #a28834;
+}
+
+.nav-links a:hover::after {
+  width: 60%;
+}
+
+/* Color change on scroll */
+.navbar.scrolled .nav-links a {
+  color: #000;
+}
+
+.navbar.scrolled .nav-links a:hover {
+  color: #000;
+  text-shadow: none;
+}
+
+.navbar.scrolled .nav-links a:hover::after {
+  background-color: #000;
+}
+
+/* ✅ Login button (always on right side) */
+.login-link {
+  margin-left: auto; /* Pushes it to far right */
+  background-color: #8d8c87ca;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-link:hover {
+  background-color: #a28834;
+  color: #fefefe;
+  box-shadow: 0 0 10px #000000;
+}
+
+/* ✅ When scrolled, keep it visible */
+.navbar.scrolled .login-link {
+  background-color: rgb(232, 224, 224);
+  color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px 30px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .login-link {
+    margin-top: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

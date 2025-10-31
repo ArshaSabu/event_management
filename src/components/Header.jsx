@@ -24,15 +24,15 @@ export default function Header() {
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#destination">Destination Weddings</a>
+        {/* <a href="#destination">Destination Weddings</a> */}
         <a href="#gallery">Gallery</a>
-        <a href="#faq">FAQ’s</a>
+        {/* <a href="#faq">FAQ’s</a> */}
         <a href="#contact">Contact Us</a>
       </nav>
 
       {/* ✅ Login Button */}
       <a href="#login" className="login-link">
-        Log-in
+        Log-out
       </a>
     </header>
   );

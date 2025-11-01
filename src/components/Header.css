@@ -109,9 +109,9 @@
   background-color: #000;
 }
 
-/* ✅ Login button (always on right side) */
+/*  Login button  */
 .login-link {
-  margin-left: auto; /* Pushes it to far right */
+  margin-left: auto; 
   background-color: #8d8c87ca;
   color: white;
   padding: 8px 18px;
@@ -127,7 +127,7 @@
   box-shadow: 0 0 10px #000000;
 }
 
-/* ✅ When scrolled, keep it visible */
+/* When scrolled, keep it visible */
 .navbar.scrolled .login-link {
   background-color: rgb(232, 224, 224);
   color: black;

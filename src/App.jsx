@@ -1,29 +1,43 @@
-import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import "./index.css";
-import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Header from "./components/Header";
 
-export default function App() {
+
+function App() {
+  const location = useLocation();
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+
+  // Hide Header and Footer on login/register pages
+  const hideLayout = location.pathname === "/login" || location.pathname === "/register";
+
   return (
     <>
-      <Header />
-      {/* <main style={{ paddingTop: "100px", minHeight: "70vh" }}>
-        <h2 style={{ textAlign: "center", marginTop: 60 }}>
-          Page body / hero area
-        </h2>
-      </main> */}
+      {!hideLayout && <Header />}
+
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        {/*  If user not logged in → redirect to login */}
+        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+       
+      
+
+
+       
+       
+        {/*  Public routes */}
+        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
+
+        {/* Redirect unknown routes */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <Footer />
+
+      {!hideLayout && <Footer />}
     </>
   );
 }
 
-
-
-
-
-
+export default App;

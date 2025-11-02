@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
   const [loginData, setLoginData] = useState({
@@ -9,15 +10,17 @@ function Login() {
   });
 
   const navigate = useNavigate();
+  const { loginUser } = useContext(AuthContext); // ✅ from context
 
   const handleLogin = () => {
     const { email, password } = loginData;
 
     if (!email || !password) {
-      alert("Please fill all fields");
+      alert("⚠️ Please fill all fields");
       return;
     }
 
+    // --- ADMIN LOGIN ---
     const adminAccount = {
       email: "admin@gmail.com",
       password: "admin123",
@@ -25,26 +28,27 @@ function Login() {
       name: "Admin",
     };
 
-    if (email === adminAccount.email && password === adminAccount.password) {
-      localStorage.setItem("currentUser", JSON.stringify(adminAccount));
-      alert("Welcome Admin!");
-      navigate("/");
-      return;
-    }
+   if (email === adminAccount.email && password === adminAccount.password) {
+  loginUser(adminAccount);
+  alert("👑 Welcome Admin!");
+  setTimeout(() => navigate("/"), 100);
+  return;
+}
 
+    // --- USER LOGIN ---
     const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
     const user = storedUsers.find((user) => user.email === email);
 
     if (user) {
       if (user.password === password) {
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        alert("Login Successful!");
-        navigate("/");
-      } else {
-        alert("Invalid password!");
+  loginUser(user); // ✅ update global context
+  alert("🎉 Login Successful!");
+  setTimeout(() => navigate("/"), 100); // ✅ navigate after alert closes
+}else {
+        alert("❌ Invalid password!");
       }
     } else {
-      alert("User not found. Please register first!");
+      alert("📝 User not found. Please register first!");
       navigate("/register");
     }
   };
@@ -97,7 +101,6 @@ function Login() {
           />
         </div>
 
-
         <button
           className="w-100 fw-semibold text-white"
           style={{
@@ -108,12 +111,12 @@ function Login() {
             transition: "all 0.3s ease",
           }}
           onMouseOver={(e) =>
-          (e.currentTarget.style.background =
-            "linear-gradient(90deg, #b8860b, #d4af37)")
+            (e.currentTarget.style.background =
+              "linear-gradient(90deg, #b8860b, #d4af37)")
           }
           onMouseOut={(e) =>
-          (e.currentTarget.style.background =
-            "linear-gradient(90deg, #d4af37, #b8860b)")
+            (e.currentTarget.style.background =
+              "linear-gradient(90deg, #d4af37, #b8860b)")
           }
           onClick={handleLogin}
         >
@@ -122,10 +125,7 @@ function Login() {
 
         <p className="text-center text-muted mt-3 mb-0">
           Don't have an account?{" "}
-          <Link
-            to="/register"
-
-          >
+          <Link to="/register" className="fw-semibold text-decoration-none">
             Register here
           </Link>
         </p>

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Header.css";
-import logo from "../assets/logo.png"; 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext"; // ✅ import context
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+  const { logoutUser } = useContext(AuthContext); // ✅ use logoutUser from context
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -13,32 +14,33 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-//  Logout
-  const handleLogout = () => {
-    localStorage.removeItem("currentUser");
+  // ✅ Logout handler
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logoutUser(); // call context function
     alert("Logged out successfully!");
-    navigate("/login");
+    navigate("/login"); // redirect to login page
   };
 
   return (
     <header className={`navbar poiret-one-regular ${scrolled ? "scrolled" : ""}`}>
-      {/*  Image Logo */}
+      {/* Logo */}
       <div className="logo">
-        <img src={logo} alt="Vivaah Logo" className="logo-img" />
+        <img src="/logo.png" alt="Vivaah Logo" className="logo-img" />
         <span>Amora</span>Events
       </div>
 
-      {/*  Navigation Links */}
+      {/* Navigation Links */}
       <nav className="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact Us</a>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/services">Services</Link>
+        <Link to="/gallery">Gallery</Link>
+        <Link to="/contact">Contact Us</Link>
       </nav>
 
-      
-      <a onClick={handleLogout} className="login-link" style={{ cursor: "pointer" }}>
+      {/* Logout Button */}
+      <a href="#" onClick={handleLogout} className="login-link" style={{ cursor: "pointer" }}>
         Log-out
       </a>
     </header>

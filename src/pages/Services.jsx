@@ -59,6 +59,7 @@ function Services() {
           textAlign: "center",
           color: "#a67c00",
           fontSize: "2.5rem",
+          paddingTop:"20px",
           fontWeight: "bold",
           marginTop: "20px",
           marginBottom:"20px"

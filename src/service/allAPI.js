@@ -1,12 +1,19 @@
 import commonAPI from "./commonAPI";
 import BASEURL from "./serverURL";
 
-// Register new user (POST)
-export const registerUserAPI = async (reqBody) => {
-  return await commonAPI("POST", `${BASEURL}/users`, reqBody);
+// Add new event (User)
+export const addEventAPI = async (reqBody) => {
+  return await commonAPI("POST", `${BASEURL}/events`, reqBody);
 };
 
-// Login existing user (GET by email)
-export const loginUserAPI = async (email) => {
-  return await commonAPI("GET", `${BASEURL}/users?email=${email}`, {});
+// Get all events
+export const getAllEventsAPI = async () => {
+  return await commonAPI("GET", `${BASEURL}/events`, {});
+};
+
+
+
+// Delete event (Admin)
+export const deleteEventAPI = async (id) => {
+  return await commonAPI("DELETE", `${BASEURL}/events/${id}`, {});
 };

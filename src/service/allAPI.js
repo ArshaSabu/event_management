@@ -11,6 +11,10 @@ export const getAllEventsAPI = async () => {
   return await commonAPI("GET", `${BASEURL}/events`, {});
 };
 
+// Update event (Admin)
+export const updateEventAPI = async (id, reqBody) => {
+  return await commonAPI("PUT", `${BASEURL}/events/${id}`, reqBody);
+};
 
 
 // Delete event (Admin)

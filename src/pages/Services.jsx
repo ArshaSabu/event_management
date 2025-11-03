@@ -5,8 +5,13 @@ import EventForm from "../components/EventForm";
 import { getAllEventsAPI, deleteEventAPI } from "../service/allAPI";
 import { FaChartBar } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
+import EditForm from "../components/EditForm";
+
 
 function Services() {
+  const [editingEventData, setEditingEventData] = useState(null);
+
+
   const { currentUser } = useContext(AuthContext);
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
@@ -124,7 +129,14 @@ function Services() {
                       </p>
                     </div>
 
-                    <div className="card-footer bg-transparent border-0 text-center pb-3">
+                    <div className="card-footer bg-transparent border-0 text-center pb-3 d-flex gap-2">
+                      <Button
+                         variant="outline-primary"
+                         size="sm"
+                        onClick={() => setEditingEventData(event)}
+                         >
+                          Edit
+                      </Button>
                       <Button
                         variant="outline-danger"
                         size="sm"
@@ -138,6 +150,22 @@ function Services() {
               ))}
             </Row>
           )}
+
+      {/* edit */}
+
+{editingEventData && (
+  <div className="mt-4">
+    <EditForm
+      initialData={editingEventData}
+      onSubmit={(data) => {
+        setEditingEventData(null);
+        if (data) fetchAllEvents();
+      }}
+    />
+  </div>
+)}
+
+
         </div>
       ) : (
         <div className="text-center mt-5">

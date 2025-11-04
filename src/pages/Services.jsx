@@ -180,7 +180,7 @@ function Services() {
           ) : (
             <EventForm
               onSubmit={() => {
-                alert("🎉 Event booked successfully!");
+                // alert("🎉 Event booked successfully!");
                 setShowForm(false);
                 fetchAllEvents();
               }}

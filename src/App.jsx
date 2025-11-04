@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Gallery from "./pages/Gallery";
 
 function App() {
   const location = useLocation();
@@ -39,6 +40,12 @@ function App() {
           path="/about"
           element={currentUser ? <About /> : <Navigate to="/login" />}
         />
+          {/* Gallery — visible only when logged in */}
+        <Route
+          path="/gallery"
+          element={currentUser ? <Gallery /> : <Navigate to="/login" />}
+        />
+
 
         {/* Public routes */}
         <Route

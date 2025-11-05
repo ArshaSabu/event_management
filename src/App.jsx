@@ -10,12 +10,13 @@ import Services from "./pages/Services";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Gallery from "./pages/Gallery";
+import Contact from "./pages/Contact"; 
+import AdminMessages from "./pages/AdminMessages"; 
 
 function App() {
   const location = useLocation();
-  const { currentUser } = useContext(AuthContext); // ✅ use context now instead of localStorage
+  const { currentUser } = useContext(AuthContext);
 
-  // Hide Header and Footer on login/register pages
   const hideLayout =
     location.pathname === "/login" || location.pathname === "/register";
 
@@ -24,28 +25,41 @@ function App() {
       {!hideLayout && <Header />}
 
       <Routes>
-        {/* Protected route — only logged in users can access home */}
         <Route
           path="/"
           element={currentUser ? <Home /> : <Navigate to="/login" />}
         />
 
-        {/* Services page visible only if logged in */}
         <Route
           path="/services"
           element={currentUser ? <Services /> : <Navigate to="/login" />}
         />
-         {/* ✅ About page — visible only when logged in */}
         <Route
           path="/about"
           element={currentUser ? <About /> : <Navigate to="/login" />}
         />
-          {/* Gallery — visible only when logged in */}
         <Route
           path="/gallery"
           element={currentUser ? <Gallery /> : <Navigate to="/login" />}
         />
 
+        {/* ✅ Contact Page */}
+        <Route
+          path="/contact"
+          element={currentUser ? <Contact /> : <Navigate to="/login" />}
+        />
+
+        {/* ✅ Admin Messages Page */}
+        <Route
+          path="/admin/messages"
+          element={
+            currentUser && currentUser.email === "admin@gmail.com" ? (
+              <AdminMessages />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
         {/* Public routes */}
         <Route
@@ -57,7 +71,6 @@ function App() {
           element={currentUser ? <Navigate to="/" /> : <Register />}
         />
 
-        {/* Redirect unknown routes */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 

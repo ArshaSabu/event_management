@@ -1,0 +1,64 @@
+.admin-container {
+  padding: 40px;
+  margin-top: 80px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000;
+  font-family: "Poppins", sans-serif;
+}
+
+.admin-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #a28834;
+}
+
+.message-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-table th {
+  background: #a28834;
+  color: #fff;
+  padding: 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.message-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.message-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.no-messages {
+  text-align: center;
+  margin-top: 20px;
+  color: #a28834;
+  font-style: italic;
+}
+
+
+.btn-danger {
+  background-color: #dc3545 !important;
+  border: none !important;
+  color: #fff !important;
+  transition: 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #bb2d3b !important;
+}

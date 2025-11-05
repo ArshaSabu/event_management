@@ -24,7 +24,7 @@ const Footer = () => {
 
         <div className="footer-box contact">
           <h3>Contact</h3>
-          <p>Dubai – United Arab Emirates</p>
+          <p>Ernakulam,Kerala</p>
           <p>
             E : <a href="mailto:info@vivaahcelebrations.com">info@AmoraEvents.com</a>
           </p>
